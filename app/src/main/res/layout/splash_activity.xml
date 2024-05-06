@@ -7,5 +7,5 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/baseline_account_box_24"/>
+        android:background="@drawable/baseline_add_a_photo_24"/>
 </LinearLayout>
