@@ -5,9 +5,41 @@
     android:layout_height="match_parent"
     tools:context=".exeFragment">
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
+        android:paddingTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2" />
+        android:layout_gravity="center_horizontal|top"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Select"
+            android:gravity="center"
+            android:textSize="24dp"/>
+        <android.widget.Button
+            android:layout_marginTop="10dp"
+            android:id="@+id/button_upper_body"
+            android:layout_width="350dp"
+            android:layout_height="120dp"
+            android:background="@drawable/rounded_box_with_stroke"
+            android:text="상체 운동"
+            android:textSize="18dp"
+            android:layout_gravity="center"
+            android:gravity="top|start"
+            android:paddingTop="20dp"
+            android:paddingLeft="20dp"/>
+        <android.widget.Button
+            android:layout_marginTop="40dp"
+            android:id="@+id/button_lower_body"
+            android:layout_width="350dp"
+            android:layout_height="120dp"
+            android:background="@drawable/rounded_box_with_stroke"
+            android:text="하체 운동"
+            android:textSize="18dp"
+            android:layout_gravity="center"
+            android:gravity="top|start"
+            android:paddingTop="20dp"
+            android:paddingLeft="20dp"/>
+    </LinearLayout>
 </FrameLayout>

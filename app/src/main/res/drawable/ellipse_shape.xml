@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#FFC107"/> <!-- 타원의 색상 설정 -->
+    <!-- 타원의 크기를 지정하려면, 이 파일을 사용하는 뷰에서 크기를 지정해야 합니다. -->
+</shape>
