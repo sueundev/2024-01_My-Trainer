@@ -8,24 +8,17 @@
     android:orientation="vertical"
     tools:context=".recordFragment">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="TextView" />
-
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,15 +29,24 @@
             <ImageView
                 android:id="@+id/icon1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:src="@drawable/baseline_directions_run_24" />
 
             <TextView
-                android:id="@+id/exeTime"
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="35분"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/exe_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="운동 기록" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -56,15 +58,24 @@
             <ImageView
                 android:id="@+id/icon2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:src="@drawable/baseline_directions_run_24" />
 
             <TextView
-                android:id="@+id/foodKcal"
+                android:id="@+id/textView2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="323Kcal"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/kcal_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="식단 기록" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -76,23 +87,26 @@
             <ImageView
                 android:id="@+id/icon3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:src="@drawable/baseline_directions_run_24" />
 
             <TextView
-                android:id="@+id/weight"
+                android:id="@+id/textView3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="65kg"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/weight_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="체중 기록" />
+
         </LinearLayout>
 
     </LinearLayout>
 
-    <android.widget.Button
-        android:id="@+id/record_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Button" />
 </LinearLayout>

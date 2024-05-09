@@ -12,13 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTrainer"
         tools:targetApi="31">
-        <activity android:name=".exercise_upper"></activity>
-        <activity android:name=".exercise_lower"></activity>
+        <activity
+            android:name=".Weight_record_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Kcal_record_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".exe_record_Activity"
+            android:exported="false" />
+        <activity android:name=".exercise_upper" />
+        <activity android:name=".exercise_lower" />
         <activity
             android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TitleActivity"
             android:exported="true">
-        </activity>
-        <activity android:name=".TitleActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
