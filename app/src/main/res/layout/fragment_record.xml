@@ -1,112 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".recordFragment">
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    android:paddingTop="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:padding="5dp">
+        android:orientation="vertical"
+        android:gravity="top">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <!-- 날짜를 표시할 텍스트뷰 -->
+        <TextView
+            android:id="@+id/text_view_date"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:text="Selected Date"
+            android:textSize="24dp"
+            android:gravity="center"/>
 
-            <ImageView
-                android:id="@+id/icon1"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:src="@drawable/baseline_directions_run_24" />
+        <!-- 캘린더 뷰 -->
+        <CalendarView
+            android:id="@+id/calendar_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:text="35분"
-                android:textSize="15dp" />
+        <!-- 운동시간, 칼로리, 몸무게 섹션 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center" >
 
-            <Button
-                android:id="@+id/exe_btn"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="운동 기록" />
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="8dp">
 
+                <TextView
+                    android:id="@+id/text_view_exercise_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="운동시간"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="8dp">
+
+                <TextView
+                    android:id="@+id/text_view_calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="칼로리"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="8dp">
+
+                <TextView
+                    android:id="@+id/text_view_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="몸무게"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
+
+        <!-- 기록 버튼 -->
+        <Button
+            android:id="@+id/button_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/icon2"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:src="@drawable/baseline_directions_run_24" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:text="323Kcal"
-                android:textSize="15dp" />
-
-            <Button
-                android:id="@+id/kcal_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="식단 기록" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/icon3"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:src="@drawable/baseline_directions_run_24" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:text="65kg"
-                android:textSize="15dp" />
-
-            <Button
-                android:id="@+id/weight_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="체중 기록" />
-
-        </LinearLayout>
-
+            android:text="기록"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center" />
     </LinearLayout>
-
 </LinearLayout>
