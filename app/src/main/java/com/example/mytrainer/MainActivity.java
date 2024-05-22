@@ -45,11 +45,6 @@ public class MainActivity extends AppCompatActivity {
                         .replace(R.id.home_ly, new homeFragment())
                         .commit();
                 return true;
-            } else if (menuItem.getItemId() == R.id.menu_exe) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_ly, new exeFragment())
-                        .commit();
-                return true;
             } else if (menuItem.getItemId() == R.id.menu_myPage) {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.home_ly, new myPageFragment())
