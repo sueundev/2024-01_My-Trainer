@@ -13,7 +13,7 @@ public class TitleActivity extends AppCompatActivity{
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), myPageActivity.class);
                 startActivity(intent);
                 finish();
             }
