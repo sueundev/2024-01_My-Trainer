@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/rounded_box_with_stroke">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PM 05:23"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tv_upper_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="상체 운동 x 1"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/tv_lower_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="하체 운동 x 2"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"/>
+</LinearLayout>
