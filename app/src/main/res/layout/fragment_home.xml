@@ -9,14 +9,9 @@
 
     <android.widget.Button
         android:id="@+id/button_exercise"
-        android:layout_width="350dp"
-        android:layout_height="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="운동"
         android:background="@drawable/rounded_box_with_stroke"
-        android:layout_gravity="center"
-        android:gravity="top|start"
-        android:paddingTop="20dp"
-        android:paddingLeft="25dp"
-        android:textSize="18dp"
-        android:layout_centerInParent="true"/>
+        android:textSize="18dp" />
 </LinearLayout>

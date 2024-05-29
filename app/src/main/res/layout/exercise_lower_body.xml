@@ -14,19 +14,16 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:text="개수를 세 줄 운동 고르기"
         android:textColor="#000000" />
+
     <android.widget.Button
-        android:layout_marginTop="10dp"
         android:id="@+id/button_squat"
-        android:layout_width="350dp"
-        android:layout_height="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/rounded_box_with_stroke"
         android:text="스쿼트"
-        android:textSize="18dp"
-        android:layout_gravity="center"
-        android:gravity="top|start"
-        android:paddingTop="20dp"
-        android:paddingLeft="20dp"/>
+        android:layout_marginTop="20dp"
+        android:textSize="18dp" />
 </LinearLayout>
