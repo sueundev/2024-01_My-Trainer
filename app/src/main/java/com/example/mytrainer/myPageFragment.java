@@ -1,6 +1,8 @@
 package com.example.mytrainer;
 
-import android.content.Context;
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -14,97 +16,92 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+import android.widget.TextView;
 
 public class myPageFragment extends Fragment {
-    private EditText editName;
-    private EditText editAge;
-    private EditText editWeight;
-    private RadioGroup radioGroupGender;
-    private RadioButton radioMale;
-    private RadioButton radioFemale;
-    private Button saveButton;
-
+    private TextView userIdTextView;
+    private TextView nameAgeTextView;
+    private TextView genderWeightTextView;
     private SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_page, container, false);
 
-        // View 초기화
-        editName = view.findViewById(R.id.edit_name);
-        editAge = view.findViewById(R.id.edit_age);
-        editWeight = view.findViewById(R.id.edit_weight);
-        radioGroupGender = view.findViewById(R.id.radio_group_gender);
-        radioMale = view.findViewById(R.id.radio_male);
-        radioFemale = view.findViewById(R.id.radio_female);
-        saveButton = view.findViewById(R.id.save_button);
+        userIdTextView = view.findViewById(R.id.userIdTextView);
+        nameAgeTextView = view.findViewById(R.id.nameAgeTextView);
+        genderWeightTextView = view.findViewById(R.id.genderWeightTextView);
 
-        // SharedPreferences 초기화
-        sharedPreferences = getActivity().getSharedPreferences("MypagePreferences", Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences("LoginPrefs", MODE_PRIVATE);
+        String idText = sharedPreferences.getString("email", "No Email");
 
-        // 기존 데이터 불러오기
-        loadUserData();
+        loadProfileData();
+        userIdTextView.setText(idText);
 
-        // 저장 버튼 클릭 리스너 설정
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.profileLayout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 사용자 입력 데이터 가져오기
-                String name = editName.getText().toString();
-                String age = editAge.getText().toString();
-                String gender = getSelectedGender();
-                String weight = editWeight.getText().toString();
-
-                // 데이터 저장
-                saveUserData(name, age, gender, weight);
-
-                // 저장 완료 메시지
-                Toast.makeText(getActivity(), "저장되었습니다: " + name + ", " + age + ", " + gender + ", " + weight, Toast.LENGTH_SHORT).show();
+                showEditDialog();
             }
         });
 
         return view;
     }
 
-    private void saveUserData(String name, String age, String gender, String weight) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("name", name);
-        editor.putString("age", age);
-        editor.putString("gender", gender);
-        editor.putString("weight", weight);
-        editor.apply();
+    private void loadProfileData() {
+        String name = sharedPreferences.getString("name", "John Doe");
+        String age = sharedPreferences.getString("age", "25");
+        String gender = sharedPreferences.getString("gender", "Male");
+        String weight = sharedPreferences.getString("weight", "70kg");
+
+        nameAgeTextView.setText(name + " / " + age);
+        genderWeightTextView.setText(gender + " / " + weight);
     }
 
-    private void loadUserData() {
-        String name = sharedPreferences.getString("name", "");
-        String age = sharedPreferences.getString("age", "");
-        String gender = sharedPreferences.getString("gender", "");
-        String weight = sharedPreferences.getString("weight", "");
+    public void showEditDialog() {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.dialog_edit_profile);
 
-        editName.setText(name);
-        editAge.setText(age);
-        editWeight.setText(weight);
-        setSelectedGender(gender);
-    }
+        EditText editName = dialog.findViewById(R.id.editName);
+        EditText editAge = dialog.findViewById(R.id.editAge);
+        RadioGroup genderRadioGroup = dialog.findViewById(R.id.radio_group_gender);
+        EditText editWeight = dialog.findViewById(R.id.editWeight);
+        Button saveButton = dialog.findViewById(R.id.saveButton);
 
-    private String getSelectedGender() {
-        int selectedId = radioGroupGender.getCheckedRadioButtonId();
-        if (selectedId == R.id.radio_male) {
-            return "Male";
-        } else if (selectedId == R.id.radio_female) {
-            return "Female";
-        } else {
-            return "";
-        }
-    }
-
-    private void setSelectedGender(String gender) {
+        // 기존 값을 다이얼로그에 설정합니다.
+        editName.setText(sharedPreferences.getString("name", ""));
+        editAge.setText(sharedPreferences.getString("age", ""));
+        String gender = sharedPreferences.getString("gender", "Male");
         if (gender.equals("Male")) {
-            radioMale.setChecked(true);
-        } else if (gender.equals("Female")) {
-            radioFemale.setChecked(true);
+            genderRadioGroup.check(R.id.radio_male);
+        } else {
+            genderRadioGroup.check(R.id.radio_female);
         }
+        editWeight.setText(sharedPreferences.getString("weight", ""));
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = editName.getText().toString();
+                String age = editAge.getText().toString();
+                String gender = ((RadioButton) dialog.findViewById(genderRadioGroup.getCheckedRadioButtonId())).getText().toString();
+                String weight = editWeight.getText().toString();
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("name", name);
+                editor.putString("age", age);
+                editor.putString("gender", gender);
+                editor.putString("weight", weight);
+                editor.apply();
+
+                nameAgeTextView.setText(name + " / " + age);
+                genderWeightTextView.setText(gender + " / " + weight);
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }

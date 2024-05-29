@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#D5D5D5"/> <!-- 여기서 배경색을 원하는 대로 설정할 수 있습니다. -->
+    <solid android:color="#FFFFFF"/> <!-- 배경색을 흰색으로 설정 -->
     <stroke
         android:width="2dp"
-        android:color="#000000"/>
-    <corners android:radius="30dp"/>
+        android:color="#DDB3B3B3"/> <!-- 테두리를 검정색으로 설정 -->
+    <padding
+        android:left="4dp"
+        android:top="4dp"
+        android:right="4dp"
+        android:bottom="4dp"/>
+    <corners android:radius="8dp"/> <!-- 모서리를 둥글게 설정 -->
 </shape>

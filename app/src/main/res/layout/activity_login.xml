@@ -22,7 +22,7 @@
         android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="ID"
         android:inputType="textEmailAddress"
         android:padding="10dp"
         android:layout_marginBottom="16dp"/>
