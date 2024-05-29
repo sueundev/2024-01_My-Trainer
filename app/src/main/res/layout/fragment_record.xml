@@ -16,85 +16,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Selected Date"
-            android:textSize="24dp"
+            android:textSize="20dp"
             android:gravity="center"/>
 
         <!-- 캘린더 뷰 -->
         <CalendarView
             android:id="@+id/calendar_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <!-- 운동시간, 칼로리, 몸무게 섹션 -->
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center" >
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="8dp">
-
-                <TextView
-                    android:id="@+id/text_view_exercise_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="운동시간"
-                    android:textSize="16sp"
-                    android:gravity="center"
-                    android:textColor="@android:color/black"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="8dp">
-
-                <TextView
-                    android:id="@+id/text_view_calories"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="칼로리"
-                    android:textSize="16sp"
-                    android:gravity="center"
-                    android:textColor="@android:color/black"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="8dp">
-
-                <TextView
-                    android:id="@+id/text_view_weight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="몸무게"
-                    android:textSize="16sp"
-                    android:gravity="center"
-                    android:textColor="@android:color/black"/>
-            </LinearLayout>
-        </LinearLayout>
-
+            android:layout_marginTop="20dp"/>
 
         <!-- 기록 버튼 -->
         <Button
             android:id="@+id/button_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기록"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:text="기록" />
     </LinearLayout>
 </LinearLayout>

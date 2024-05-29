@@ -26,9 +26,6 @@ public class recordFragment extends Fragment {
 
     private TextView textViewDate;
     private CalendarView calendarView;
-    private TextView textViewExerciseTime;
-    private TextView textViewCalories;
-    private TextView textViewWeight;
     private Button buttonSave;
     private String selectedDate;
     private SharedPreferences sharedPreferences;
@@ -48,9 +45,6 @@ public class recordFragment extends Fragment {
         // View 초기화
         textViewDate = view.findViewById(R.id.text_view_date);
         calendarView = view.findViewById(R.id.calendar_view);
-        textViewExerciseTime = view.findViewById(R.id.text_view_exercise_time);
-        textViewCalories = view.findViewById(R.id.text_view_calories);
-        textViewWeight = view.findViewById(R.id.text_view_weight);
         buttonSave = view.findViewById(R.id.button_save);
 
         // SharedPreferences 초기화
@@ -59,7 +53,6 @@ public class recordFragment extends Fragment {
         // 초기 선택된 날짜 설정
         selectedDate = getCurrentDate();
         textViewDate.setText(selectedDate);
-        loadUserData(selectedDate);
 
         // 캘린더뷰 날짜 변경 리스너 설정
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -70,7 +63,6 @@ public class recordFragment extends Fragment {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 selectedDate = sdf.format(calendar.getTime());
                 textViewDate.setText(selectedDate);
-                loadUserData(selectedDate);
             }
         });
 
@@ -86,24 +78,6 @@ public class recordFragment extends Fragment {
         return view;
     }
 
-    private void saveUserData(String date, String exerciseTime, String calories, String weight) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(date + "_exerciseTime", exerciseTime);
-        editor.putString(date + "_calories", calories);
-        editor.putString(date + "_weight", weight);
-        editor.apply();
-    }
-
-    private void loadUserData(String date) {
-        String exerciseTime = sharedPreferences.getString(date + "_exerciseTime", "");
-        String calories = sharedPreferences.getString(date + "_calories", "");
-        String weight = sharedPreferences.getString(date + "_weight", "");
-
-        textViewExerciseTime.setText(exerciseTime);
-        textViewCalories.setText(calories);
-        textViewWeight.setText(weight);
-    }
-
     private String getCurrentDate() {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -117,23 +91,31 @@ public class recordFragment extends Fragment {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Fragment fragment = null;
                         switch (which) {
                             case 0:
-                                navigateToFragment(new ExerciseTimeFragment());
+                                fragment = new ExerciseTimeFragment();
                                 break;
                             case 1:
-                                navigateToFragment(new CaloriesFragment());
+                                fragment = new CaloriesFragment();
                                 break;
                             case 2:
-                                navigateToFragment(new WeightFragment());
+                                fragment = new WeightFragment();
                                 break;
+                        }
+                        if (fragment != null) {
+                            navigateToFragment(fragment, selectedDate);
                         }
                     }
                 });
         builder.create().show();
     }
 
-    private void navigateToFragment(Fragment fragment) {
+    private void navigateToFragment(Fragment fragment, String date) {
+        Bundle bundle = new Bundle();
+        bundle.putString("selected_date", date);
+        fragment.setArguments(bundle);
+
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(getId(), fragment);
