@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="운동"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/main_Color"
         android:background="@drawable/rounded_box_with_stroke"
         android:textSize="18dp" />
 </LinearLayout>

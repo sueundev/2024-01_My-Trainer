@@ -25,6 +25,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_box_with_stroke"
             android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/main_Color"
             android:text="상체 운동"
             android:textSize="18dp" />
 
@@ -34,6 +36,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_box_with_stroke"
             android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/main_Color"
             android:text="하체 운동"
             android:textSize="18dp" />
     </LinearLayout>

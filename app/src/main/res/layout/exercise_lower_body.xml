@@ -24,6 +24,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_box_with_stroke"
         android:text="스쿼트"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/main_Color"
         android:layout_marginTop="20dp"
         android:textSize="18dp" />
 </LinearLayout>

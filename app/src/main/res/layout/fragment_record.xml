@@ -30,6 +30,8 @@
             android:id="@+id/button_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/main_Color"
             android:layout_gravity="center"
             android:text="기록" />
     </LinearLayout>

@@ -37,12 +37,14 @@
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/main_Color"
             android:text="저장" />
 
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/main_Color"
             android:text="취소"
             android:layout_marginStart="8dp"/>
     </LinearLayout>

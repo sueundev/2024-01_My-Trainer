@@ -24,6 +24,8 @@
             android:id="@+id/btn_record_exercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/main_Color"
             android:text="운동 기록" />
     </LinearLayout>
 
