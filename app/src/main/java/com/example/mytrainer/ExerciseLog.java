@@ -5,6 +5,7 @@ public class ExerciseLog {
     private String upperBodyCount;
     private String lowerBodyCount;
     private String date;
+    private int duration;
 
     public ExerciseLog(long timestamp, String upperBodyCount, String lowerBodyCount, String date) {
         this.timestamp = timestamp;
@@ -12,7 +13,9 @@ public class ExerciseLog {
         this.lowerBodyCount = lowerBodyCount;
         this.date = date;
     }
-
+    public int getDuration(){
+        return duration;
+    }
     public long getTimestamp() {
         return timestamp;
     }

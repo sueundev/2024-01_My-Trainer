@@ -1,12 +1,39 @@
-<!-- res/layout/fragment_home.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".homeFragment"
-    android:orientation="vertical"
     android:padding="20dp">
 
+    <!-- 위쪽에 네모난 박스 안에 텍스트 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/tvUpper"
+            android:layout_width="180dp"
+            android:layout_height="150dp"
+            android:background="@drawable/rounded_box_with_stroke"
+            android:text="오늘의 상체 횟수\n"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:id="@+id/tvLower"
+            android:layout_width="180dp"
+            android:layout_height="150dp"
+            android:background="@drawable/rounded_box_with_stroke"
+            android:text="오늘의 하체 횟수\n"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
     <android.widget.Button
         android:id="@+id/button_exercise"
         android:layout_width="match_parent"
@@ -15,5 +42,7 @@
         android:textColor="@color/white"
         android:backgroundTint="@color/main_Color"
         android:background="@drawable/rounded_box_with_stroke"
-        android:textSize="18dp" />
-</LinearLayout>
+        android:textSize="18dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"/>
+</RelativeLayout>

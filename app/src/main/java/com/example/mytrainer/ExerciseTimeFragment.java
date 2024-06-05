@@ -1,3 +1,4 @@
+// ExerciseTimeFragment.java
 package com.example.mytrainer;
 
 import android.app.Dialog;
@@ -8,13 +9,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 public class ExerciseTimeFragment extends Fragment {
@@ -23,6 +23,7 @@ public class ExerciseTimeFragment extends Fragment {
     private ExerciseLogDao exerciseLogDao;
     private ExerciseLogAdapter exerciseLogAdapter;
     private List<ExerciseLog> exerciseLogs;
+    private SharedViewModel sharedViewModel;
 
     @Nullable
     @Override
@@ -32,6 +33,8 @@ public class ExerciseTimeFragment extends Fragment {
         textViewSelectedDate = view.findViewById(R.id.text_view);
         Button btnRecordExercise = view.findViewById(R.id.btn_record_exercise);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         Bundle args = getArguments();
         if (args != null) {
@@ -66,6 +69,11 @@ public class ExerciseTimeFragment extends Fragment {
             exerciseLogDao.insertLog(log);
             exerciseLogs.add(log);
             exerciseLogAdapter.notifyDataSetChanged();
+
+            // 상체 운동과 하체 운동 값을 ViewModel에 설정
+            sharedViewModel.setUpperBodyCount(log.getUpperBodyCount());
+            sharedViewModel.setLowerBodyCount(log.getLowerBodyCount());
+
             dialog.dismiss();
         });
 
