@@ -12,6 +12,7 @@ public class ExerciseLog {
         this.upperBodyCount = upperBodyCount;
         this.lowerBodyCount = lowerBodyCount;
         this.date = date;
+        int a=0;
     }
     public int getDuration(){
         return duration;
