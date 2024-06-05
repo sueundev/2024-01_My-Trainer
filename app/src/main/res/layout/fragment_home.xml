@@ -7,17 +7,19 @@
 
     <!-- 위쪽에 네모난 박스 안에 텍스트 -->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
             android:padding="10dp"
             android:id="@+id/tvUpper"
-            android:layout_width="180dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/rounded_box_with_stroke"
+            android:textAlignment="center"
             android:text="오늘의 상체 횟수\n"
-            android:textSize="20sp"
+            android:layout_weight="1"
+            android:textSize="18sp"
             android:textColor="@android:color/black"
 
             android:layout_marginTop="20dp"/>
@@ -25,11 +27,13 @@
             android:layout_marginLeft="10dp"
             android:padding="10dp"
             android:id="@+id/tvLower"
-            android:layout_width="180dp"
-            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/rounded_box_with_stroke"
             android:text="오늘의 하체 횟수\n"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textColor="@android:color/black"
             android:layout_marginTop="20dp"/>
 

@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class exeFragment extends Fragment {
 
@@ -23,26 +25,30 @@ public class exeFragment extends Fragment {
         buttonUpperBody = view.findViewById(R.id.button_upper_body);
         buttonLowerBody = view.findViewById(R.id.button_lower_body);
 
-        // 상체 운동 버튼에 클릭 이벤트 리스너 설정
         buttonUpperBody.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // exercise_upper 액티비티로 전환
-                Intent intent = new Intent(getActivity(), exercise_upper.class);
-                startActivity(intent);
+                // 프래그먼트 전환
+                navigateToFragment(new exeUpperFragment());
             }
         });
 
-        // 하체 운동 버튼에 클릭 이벤트 리스너 설정
         buttonLowerBody.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // exercise_lower 액티비티로 전환
-                Intent intent = new Intent(getActivity(), exercise_lower.class);
-                startActivity(intent);
+                // 프래그먼트 전환
+                navigateToFragment(new exeLowerFragment());
             }
         });
 
         return view;
+    }
+
+    private void navigateToFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(getId(), fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
