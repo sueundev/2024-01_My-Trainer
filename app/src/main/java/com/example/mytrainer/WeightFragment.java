@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
+import androidx.lifecycle.ViewModelProvider;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.formatter.ValueFormatter;
@@ -37,12 +37,12 @@ public class WeightFragment extends Fragment {
     private LineChart lineChart;
     private Button btnRecordWeight;
     private Map<String, Float[]> weightData = new HashMap<>();
-
+    private SharedViewModel sharedViewModel;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_weight, container, false);
-
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         textViewSelectedDate = view.findViewById(R.id.text_view);
         textViewWeight = view.findViewById(R.id.text_view_weight);
         textViewMuscle = view.findViewById(R.id.text_view_muscle);
@@ -109,6 +109,9 @@ public class WeightFragment extends Fragment {
             float muscle = Float.parseFloat(etMuscle.getText().toString());
             float fat = Float.parseFloat(etFat.getText().toString());
             weightData.put(selectedDate, new Float[]{weight, muscle, fat});
+            sharedViewModel.setWeight(weight);
+            sharedViewModel.setMuscle(muscle);
+            sharedViewModel.setFat(fat);
             updateChart();
             dialog.dismiss();
         });

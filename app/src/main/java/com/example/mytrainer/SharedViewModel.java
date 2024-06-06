@@ -11,7 +11,9 @@ public class SharedViewModel extends ViewModel {
     private final MutableLiveData<String> upperBodyCount = new MutableLiveData<>();
     private final MutableLiveData<String> lowerBodyCount = new MutableLiveData<>();
     private String lastUpdateDate = ""; // 마지막 업데이트 날짜를 저장할 변수
-
+    private final MutableLiveData<Float> weight = new MutableLiveData<>();
+    private final MutableLiveData<Float> muscle = new MutableLiveData<>();
+    private final MutableLiveData<Float> fat = new MutableLiveData<>();
     public void checkDateAndUpdate() {
         String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         if (!currentDate.equals(lastUpdateDate)) {
@@ -21,7 +23,29 @@ public class SharedViewModel extends ViewModel {
             lastUpdateDate = currentDate; // 마지막 업데이트 날짜 갱신
         }
     }
+    public void setWeight(float weight) {
+        this.weight.setValue(weight);
+    }
 
+    public LiveData<Float> getWeight() {
+        return weight;
+    }
+
+    public void setMuscle(float muscle) {
+        this.muscle.setValue(muscle);
+    }
+
+    public LiveData<Float> getMuscle() {
+        return muscle;
+    }
+
+    public void setFat(float fat) {
+        this.fat.setValue(fat);
+    }
+
+    public LiveData<Float> getFat() {
+        return fat;
+    }
     public void setUpperBodyCount(String count) {
         upperBodyCount.setValue(count);
     }

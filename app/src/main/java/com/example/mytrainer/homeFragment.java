@@ -32,7 +32,9 @@ public class homeFragment extends Fragment {
         TextView tvLower = view.findViewById(R.id.tvLower);
         ImageView upperArrow = view.findViewById(R.id.upperArrow);
         ImageView lowerArrow = view.findViewById(R.id.lowerArrow);
-
+        TextView tvWeight = view.findViewById(R.id.tvWeight);
+        TextView tvMuscle = view.findViewById(R.id.tvMuscle);
+        TextView tvFat = view.findViewById(R.id.tvFat);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         sharedViewModel.getUpperBodyCount().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -46,6 +48,26 @@ public class homeFragment extends Fragment {
             @Override
             public void onChanged(String s) {
                 tvLower.setText("오늘 운동한 하체 횟수는 "+s+"회 입니다.");
+            }
+        });
+        sharedViewModel.getWeight().observe(getViewLifecycleOwner(), new Observer<Float>() {
+            @Override
+            public void onChanged(Float weight) {
+                tvWeight.setText("몸무게: "+weight + " kg");
+            }
+        });
+
+        sharedViewModel.getMuscle().observe(getViewLifecycleOwner(), new Observer<Float>() {
+            @Override
+            public void onChanged(Float muscle) {
+                tvMuscle.setText("골격근량: "+muscle + " kg");
+            }
+        });
+
+        sharedViewModel.getFat().observe(getViewLifecycleOwner(), new Observer<Float>() {
+            @Override
+            public void onChanged(Float fat) {
+                tvFat.setText("지방: "+fat + " kg");
             }
         });
         // 화살표를 클릭하면 프래그먼트 이동
