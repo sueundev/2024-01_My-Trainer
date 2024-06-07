@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     tools:context=".homeFragment"
     android:padding="20dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/fragment_home">
     <LinearLayout
         android:layout_width="200dp"
         android:layout_height="260dp"
@@ -58,13 +59,19 @@
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/rounded_box_with_stroke"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:padding="15dp">
         <TextView
-            android:layout_marginLeft="10dp"
-            android:padding="10dp"
+            android:fontFamily="@font/himelody_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="활동량/인바디 정보"
+            android:textColor="#000000"
+            android:textSize="18dp"/>
+        <TextView
             android:id="@+id/tvUpper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,8 +80,6 @@
             android:layout_weight="1"
             android:textColor="@android:color/black" />
         <TextView
-            android:layout_marginLeft="10dp"
-            android:padding="10dp"
             android:id="@+id/tvLower"
             android:layout_weight="1"
             android:textAlignment="center"
@@ -82,20 +87,21 @@
             android:layout_height="wrap_content"
             android:text="오늘 운동한 하체 횟수는 0회 입니다."
             android:textColor="@android:color/black" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="몸무게:"
+            android:id="@+id/tvWeight"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="골격근량:"
+            android:id="@+id/tvMuscle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="지방:"
+            android:id="@+id/tvFat"/>
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="몸무게:"
-        android:id="@+id/tvWeight"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="골격근량:"
-        android:id="@+id/tvMuscle"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="지방:"
-        android:id="@+id/tvFat"/>
+
 </LinearLayout>

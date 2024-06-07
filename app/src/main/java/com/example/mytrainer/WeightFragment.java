@@ -7,10 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -49,6 +52,7 @@ public class WeightFragment extends Fragment {
         textViewFat = view.findViewById(R.id.text_view_fat);
         lineChart = view.findViewById(R.id.line_chart);
         btnRecordWeight = view.findViewById(R.id.btn_record_weight);
+        ImageView backArrow = view.findViewById(R.id.backArrow);
 
         Bundle args = getArguments();
         if (args != null) {
@@ -120,7 +124,13 @@ public class WeightFragment extends Fragment {
 
         dialog.show();
     }
-
+    private void navigateToFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(getId(), fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
     private void updateChart() {
         List<Map.Entry<String, Float[]>> sortedData = new ArrayList<>(weightData.entrySet());
         Collections.sort(sortedData, new Comparator<Map.Entry<String, Float[]>>() {

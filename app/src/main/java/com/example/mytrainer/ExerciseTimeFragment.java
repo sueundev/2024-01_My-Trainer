@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +36,7 @@ public class ExerciseTimeFragment extends Fragment {
         textViewSelectedDate = view.findViewById(R.id.text_view);
         Button btnRecordExercise = view.findViewById(R.id.btn_record_exercise);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        ImageView backArrow = view.findViewById(R.id.backArrow);
 
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
@@ -41,7 +45,12 @@ public class ExerciseTimeFragment extends Fragment {
             selectedDate = args.getString("selected_date");
             textViewSelectedDate.setText(selectedDate);
         }
-
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigateToFragment(new recordFragment());
+            }
+        });
         exerciseLogDao = new ExerciseLogDao(getContext());
         exerciseLogs = exerciseLogDao.getLogsByDate(selectedDate);
         exerciseLogAdapter = new ExerciseLogAdapter(exerciseLogs);
@@ -52,7 +61,13 @@ public class ExerciseTimeFragment extends Fragment {
 
         return view;
     }
-
+    private void navigateToFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(getId(), fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
     private void showRecordExerciseDialog() {
         Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_record_exercise);
