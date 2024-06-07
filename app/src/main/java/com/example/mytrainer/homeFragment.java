@@ -31,22 +31,22 @@ public class homeFragment extends Fragment {
         TextView tvLower = view.findViewById(R.id.tvLower);
         ImageView upperArrow = view.findViewById(R.id.upperArrow);
         ImageView lowerArrow = view.findViewById(R.id.lowerArrow);
-        TextView tvWeight = view.findViewById(R.id.tvWeight);
-        TextView tvMuscle = view.findViewById(R.id.tvMuscle);
-        TextView tvFat = view.findViewById(R.id.tvFat);
+        TextView tvWeight = view.findViewById(R.id.tv_weight);
+        TextView tvMuscle = view.findViewById(R.id.tv_muscle);
+        TextView tvFat = view.findViewById(R.id.tv_fat);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         sharedViewModel.getUpperBodyCount().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                tvUpper.setText("오늘 운동한 상체 횟수는 "+s+"회 입니다.");
+                tvUpper.setText("Upper Count:"+s+"회");
             }
         });
 
         sharedViewModel.getLowerBodyCount().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                tvLower.setText("오늘 운동한 하체 횟수는 "+s+"회 입니다.");
+                tvLower.setText("Lower Count:"+s+"회");
             }
         });
         sharedViewModel.getWeight().observe(getViewLifecycleOwner(), new Observer<Float>() {
