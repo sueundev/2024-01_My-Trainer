@@ -1,5 +1,7 @@
 package com.example.mytrainer;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 public class homeFragment extends Fragment {
 
@@ -34,19 +37,49 @@ public class homeFragment extends Fragment {
         TextView tvWeight = view.findViewById(R.id.tv_weight);
         TextView tvMuscle = view.findViewById(R.id.tv_muscle);
         TextView tvFat = view.findViewById(R.id.tv_fat);
+        TextView pBar_Upper = view.findViewById(R.id.pBar_Upper);
+        ProgressBar progressBar_upper = view.findViewById(R.id.progressbar_upper); // ProgressBar 찾기
+        TextView pBar_Lower = view.findViewById(R.id.pBar_Lower);
+        ProgressBar progressBar_lower = view.findViewById(R.id.progressbar_lower);
+
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         sharedViewModel.getUpperBodyCount().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
-            public void onChanged(String s) {
+            public void onChanged(String s)
+            {
                 tvUpper.setText("Upper Count:"+s+"회");
+
+                int upperCount = Integer.parseInt(s);
+                progressBar_upper.setProgress(upperCount); // 진행 상태 업데이트
+
+                if (upperCount < 30) {
+                    // 예: Upper Count가 30보다 작으면 빨간색으로 설정
+                    progressBar_upper.setProgressTintList(ColorStateList.valueOf(Color.RED));
+                } else {
+                    // 예: Upper Count가 30 이상이면 녹색으로 설정
+                    progressBar_upper.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+                }
+                pBar_Upper.setText("Upper:"+s+"/100");
             }
         });
 
         sharedViewModel.getLowerBodyCount().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
-            public void onChanged(String s) {
+            public void onChanged(String s)
+            {
                 tvLower.setText("Lower Count:"+s+"회");
+
+                int lowerCount = Integer.parseInt(s);
+                progressBar_lower.setProgress(lowerCount);
+
+                if(lowerCount < 30){
+                    progressBar_lower.setProgressTintList(ColorStateList.valueOf(Color.RED));
+                }
+                else{
+                    progressBar_lower.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+                }
+                pBar_Lower.setText("Lower:"+s+"/100");
             }
         });
         sharedViewModel.getWeight().observe(getViewLifecycleOwner(), new Observer<Float>() {

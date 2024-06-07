@@ -98,44 +98,91 @@
                 android:layout_height="wrap_content"
                 android:text="지방:"
                 android:id="@+id/tv_fat"/>
+            <TextView
+                android:fontFamily="@font/bagelfatone_regular"
+                android:textSize="18dp"
+                android:id="@+id/tvUpper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Upper Count:0회"
+                android:layout_weight="1"
+                android:textColor="@android:color/black" />
+            <TextView
+                android:fontFamily="@font/bagelfatone_regular"
+                android:textSize="18dp"
+                android:id="@+id/tvLower"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lower Count:0회"
+                android:textColor="@android:color/black" />
         </LinearLayout>
     </LinearLayout>
-    <!-- 위쪽에 네모난 박스 안에 텍스트 -->
-    <LinearLayout
+    <TextView
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/rounded_box_with_stroke"
-        android:layout_gravity="center"
-        android:padding="15dp">
-        <TextView
-            android:fontFamily="@font/jua_regular"
+        android:text="활동량 정보를 확인하세요"
+        android:fontFamily="@font/jua_regular"
+        android:textSize="20dp"
+        android:textColor="#000000"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_marginLeft="60dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="활동량 정보!"
-            android:textColor="#000000"
-            android:textSize="18dp"/>
-        <TextView
-            android:fontFamily="@font/bagelfatone_regular"
-            android:textSize="18dp"
-            android:id="@+id/tvUpper"
+            android:orientation="vertical">
+            <ProgressBar
+                android:id="@+id/progressbar_upper"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_marginTop="48dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progressBackgroundTint="#FBE7C6"
+                android:progressDrawable="@drawable/circle_progressbar"
+                android:progressTint="#edbf41" />
+            <TextView
+                android:textColor="#000000"
+                android:fontFamily="@font/bagelfatone_regular"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upper: 0/100"
+                android:id="@+id/pBar_Upper"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="60dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="Upper Count:0회"
-            android:layout_weight="1"
-            android:textColor="@android:color/black" />
-        <TextView
-            android:fontFamily="@font/bagelfatone_regular"
-            android:textSize="18dp"
-            android:id="@+id/tvLower"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lower Count:0회"
-            android:textColor="@android:color/black" />
+            android:orientation="vertical">
+            <ProgressBar
+                android:id="@+id/progressbar_lower"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_marginTop="48dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progressBackgroundTint="#FBE7C6"
+                android:progressDrawable="@drawable/circle_progressbar"
+                android:progressTint="#edbf41" />
+            <TextView
+                android:textColor="#000000"
+                android:fontFamily="@font/bagelfatone_regular"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lower: 0/100"
+                android:id="@+id/pBar_Lower"/>
+        </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
