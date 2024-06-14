@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/user.css">
+    <link rel="stylesheet" href="/static/css/signup.css">
+</head>
+
+<body>
+
+<main class="user_body">
+<div class="top_line"></div>
+<div class="interlock" id="signup_body">
+<section class="above">
+
+    <h1>정면으로 웹캠을 응시해주세요</h1> 
+
+    <div class="camera_frame">
+        <div id="camera"></div>
+        <div id="results"></div>
+    </div>
+
+    <div class="btn-area" id="btn-area">
+        <button onclick="take_snapshot();">프로필사진 촬영</button>
+        <p>※ 프로필사진은 얼굴인식 로그인 기능으로도 활용됩니다.</p>
+    </div>
+
+</section>
+
+<div class="error_message">
+    {{error}}
+</div>
+<div class="login_title">
+    Change Password
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.js"></script>
+
+<section class="below">
+    <form method="POST" action="{% url 'users:useredit' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+
+        <div class="int-area" id="int-area">
+           {{ form.current_password}}
+            <label>current password</label>
+        </div>
+        <div class="int-area" id="int-area">
+            {{ form.password1 }}
+            <label>Password</label>
+        </div>
+        <div class="int-area" id="int-area">
+            {{ form.password2 }}
+            <label>Password Check</label>
+        </div> 
+
+        <div class="btn-area" id="btn-area">
+            <input name="profile_img" id="profile_img" type="hidden" value="">
+            <button type="submit">회원정보 변경</button>
+            <a href="{% url 'users:login' %}">마이 페이지로 돌아가기</a>
+        </div>
+    </form>
+</section>
+
+<script>
+    // Load all webcam
+    Webcam.set({
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    })
+    Webcam.attach("#camera")
+    
+    function take_snapshot(){
+        Webcam.snap(function(data_uri){
+            // display results in page
+            document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
+            document.getElementById('profile_img').value = data_uri;
+        })
+    }
+</script>

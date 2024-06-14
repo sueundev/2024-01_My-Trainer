@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/user.css">
+    <link rel="stylesheet" href="/static/css/signup.css">
+</head>
+
+<body>
+
+<main class="user_body">
+<div class="top_line"></div>
+<div class="interlock" id="signup_body">
+<section class="above">
+
+    <h1>정면으로 웹캠을 응시해주세요</h1> 
+
+    <div class="camera_frame">
+        <div id="camera"></div>
+        <div id="results"></div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.js"></script>
+<script>
+    Webcam.set({
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+    Webcam.attach("#camera");
+
+    let ready = false;
+    let myTimer = setInterval(() => {
+        if (ready) {
+            ready = false;
+            sendFaceImage();
+        }
+    }, 300);
+
+    Webcam.on('live', () => {
+        ready = true;
+    });
+
+    function sendFaceImage() {
+        Webcam.snap(function (data) {
+            fetch('/auth/facelogin', {
+                method: 'POST',
+                body: data,
+            })
+            .then(e => {
+                e.text().then(e => {
+                    if (e == 'OK_Face') {
+                        clearInterval(myTimer);
+                        location.href = "{% url 'users:login' %}";
+                        return;
+                    }
+                    document.getElementById('results').innerHTML = '<img src="' + e + '"/>';
+                    ready = true;
+                    return e;
+                })
+                .catch(e => {
+                    clearInterval(myTimer);
+                    location.href = "{% url 'users:login' %}";
+                });
+            })
+            .catch(e => console.error(e));
+        });
+    }
+</script>
+
+<div class="btn-area" id="btn-area">
+    <div>
+        <a href="javascript:idpwLogin();">로그인 페이지로 돌아가기</a>
+    </div>
+    <div>
+        <a href="javascript:signup();">회원가입 하러가기</a>
+    </div>
+</div>
+
+<script>
+    function idpwLogin() {
+        clearInterval(myTimer);
+        location.href = "{% url 'users:login' %}";
+    }
+
+    function signup() {
+        clearInterval(myTimer);
+        location.href = "{% url 'users:signup' %}";
+    }
+</script>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Mypage</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/button.css">
+    <link rel="stylesheet" href="/static/css/user.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="stylesheet" href="/static/css/toparea.css">
+    <link rel="stylesheet" href="/static/css/mypage.css">
+
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+</head>
+
+
+<body>
+
+{% if user.is_authenticated %}
+
+<header class="top">
+    <div class="profile_box">
+        {% if user.profile_img %} 
+        <img class="profile_image" src="{{ user.profile_img.url }}" alt="프로필사진">
+        {% endif %}
+    </div>
+    <div class="welcome">
+        <div class="user">{{ user.nick_name }}_</div>
+    </div>
+    <div class="rightside"> 
+        <div class="setting_box">
+            <div class="infoedit_btn">
+                <a href="{% url 'users:useredit' %}">InfoEdit</a>
+            </div>
+        </div>
+        <a href="{% url 'users:logout' %}">Logout</a>
+    </div>
+</header>
+
+<main> 
+
+<div class="top_line"></div>
+<div class="interlock"><!-- 가로세로 연동 -->
+
+<!-- 동영상, 영상 선택 단 -->
+<section class="above">
+    <!-- SelectBox Button -->
+    <div class="selectbox">
+        <label for="workouts">select workout_</label>
+        <select id="workouts">
+            <option value="squat">SQUAT_</option>
+            <option value="dumbell_curl">DUMBELLCURL_</option>
+        </select>
+    </div>
+
+    <!-- 동영상 -->
+    <div class="video_wrap">
+        <div class="video_frame">
+            <video src="{% static 'video/squat.mp4' %}" autoplay loop id="squatVideo"></video>
+            <video src="{% static 'video/dumbell_curl.mp4' %}" autoplay loop id="dumbellCurlVideo" style="display: none;"></video>
+        </div>
+        <div class="text_frame" id="squatText">
+            <p>SQUAT</p>
+        </div>
+        <div class="text_frame" id="dumbellCurlText" style="display: none;">
+            <p>DUMBELL CURL</p>
+        </div>
+    </div>
+
+    <!-- Prev Start Next Button -->
+    <div class="btns_frame">
+        <div id="prev">
+            <div class="btn" id="btn_lr">
+                <div class="btn__content" id="btn_lr__content">< prev</div>
+                <span id="btn_lr__glitch"></span>
+            </div>
+        </div>
+        <div id="start">
+            <div class="btn" id="btn_start">
+                <div class="btn__content" id="btn_start__content">Start_</div>
+                <span class="btn__label" id="btn_start__label">A.I.FIT</span>
+                <span class="btn__glitch"></span>
+            </div>
+        </div>
+        <div id="next">
+            <div class="btn" id="btn_lr">
+                <div class="btn__content" id="btn_lr__content">next ></div>
+                <span id="btn_lr__glitch"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<!-- 기간, 그래프단 -->
+<section class="below">
+
+    <!-- Radio Button -->
+    <div class="radio_btns">
+        운동 기간 선택: 
+        <input type="radio" id="week" name="term" value="week" checked="checked">
+        <label for="week">1주일</label>
+        <input type="radio" id="halfMonth" name="term" value="halfMonth">
+        <label for="halfMonth">15일</label>
+        <input type="radio" id="month" name="term" value="month">
+        <label for="month">30일</label>
+    </div>
+
+    <!-- 그래프 처리 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <div class="graph_frame">
+        <canvas id="myChart" width="7" height="4"></canvas>
+    </div>
+</section>
+</div>  
+
+</main>
+
+{% else %}
+
+<main class="user_body">
+    <section class="user_form">
+        <h1>A.I.FIT</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="int-area">
+                {{ form.email }}
+                <label for="id_email">EMAIL</label>
+            </div>
+            <br>
+            <div class="int-area">
+                {{ form.password }}
+                <label for="id_password">PASSWORD</label>
+            </div>
+            <div class="btn-area">
+                <button id="btn_login_form" type="submit" value="로그인">LOGIN</button>
+            </div>
+        </form>
+        <div class="process">
+            <a href="{% url 'users:forgotpw' %}">Forgot Password?</a>
+            <a href="{% url 'users:face_login' %}">Face Login</a>
+            <a href="{% url 'users:signup' %}">회원가입</a>
+        </div>
+    </section>
+</main>
+
+{% endif %}
+
+</body>
+
+<!-- login page script -->
+<script> 
+    let id = $('#id_email');
+    let pw = $('#id_password');
+    let btn = $('#btn_login_form');
+
+    $(btn).on('click', function() {
+        if($(id).val() == "") {
+            $(id).next('label').addClass('warning');
+            setTimeout(function() {
+                $('label').removeClass('warning');
+            }, 1500)
+        }
+        else if($(pw).val() == "") {
+            $(pw).next('label').addClass('warning');
+            setTimeout(function() {
+                $('label').removeClass('warning');
+            }, 1500)
+        }
+    })
+</script>
+
+<!-- 동영상, 영상 선택 단 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let squatVideo = document.querySelector("#squatVideo");
+        let dumbellCurlVideo = document.querySelector("#dumbellCurlVideo");
+        let squatText = document.querySelector("#squatText");
+        let dumbellCurlText = document.querySelector("#dumbellCurlText");
+        let prevBtn = document.querySelector("#prev");
+        let nextBtn = document.querySelector("#next");
+        let startBtn = document.querySelector("#start");
+        let selectBox = document.querySelector("#workouts");
+
+        function changeVideo(prev) {
+            selectBox.selectedIndex = prev ? selectBox.selectedIndex - 1 : selectBox.selectedIndex + 1;
+
+            if (selectBox.selectedIndex === -1) {
+                selectBox.selectedIndex = prev ? selectBox.options.length - 1 : 0;
+            }
+
+            selectBox.dispatchEvent(new Event("change"));
+        }
+
+        prevBtn.addEventListener("click", function (e) {
+            changeVideo(true);
+        });
+
+        nextBtn.addEventListener("click", function (e) {
+            changeVideo(false);
+        });
+        
+        selectBox.addEventListener("change", function (e) {
+            switch (e.target.value) {
+                case "squat":
+                    squatVideo.style.display = "";
+                    dumbellCurlVideo.style.display = "none";
+                    squatText.style.display = "";
+                    dumbellCurlText.style.display = "none";
+                    break;
+                case "dumbell_curl":
+                    squatVideo.style.display = "none";
+                    dumbellCurlVideo.style.display = "";
+                    squatText.style.display = "none";
+                    dumbellCurlText.style.display = "";
+                    break;
+            }
+            target_kind = e.target.value;
+            resetChart();
+        });
+
+        startBtn.addEventListener("click", function (e) {
+            let what_kind = selectBox.options[selectBox.selectedIndex].value;
+            location.href = "/auth/sports/" + what_kind;
+        });
+    })
+</script>
+
+<!-- 기간, 그래프단 -->
+<script>
+    //DB로 부터 받아온 값을 준비시키기
+    let workout_date_temp = [];
+    let workout_count_temp = [];
+    let what_kinds = [];
+    {% for record in latest_records %}
+        workout_date_temp.push("{{record.workout_date}}");
+        workout_count_temp.push("{{record.workout_count}}");
+        what_kinds.push("{{record.what_kind}}");
+    {% endfor %}
+
+    //설정값
+    let howMuch = 7;
+    let target_kind = "squat";
+
+    //function은 스크립트 코드 중에 가장 첫번째로 정의되는 특징이 있어 바로 위에 선언한 myChart를 인지하지 못한다.
+    //그래서 화살표 함수를 변수에 담는 방식으로 변경했다. 이렇게 하면 myChart변수가 할당된 이후 함수가 정의되기에 문제가 해결된다.
+    let myChart = null;
+    let resetChart = () => {
+        //본격적으로 그리기 전에 우선 해당 종목의 해당 일수만큼만 보여주기 위한 전처리 작업을 해준다.
+        let workout_date = [];
+        let workout_count = [];
+
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = today.getMonth() + 1; //+1을 해줘야 현재 몇월인지가 구해진다.
+        let date = today.getDate();
+
+        for (let i = 0, j = 0; i < howMuch; i++) {
+            //해당 종목이 아니라면 건너 뛴다. 다만 끝에 다다랐다면 j가 length인 상태로 로직을 진행한다.
+            //그러면 아래서 자연히 day는 -1판정을 받으며 진행중인 날짜에 count가 0인 데이터를 채우게 될 것이다.
+            if (j < workout_date_temp.length && what_kinds[j] != target_kind) {
+                if (++j < workout_date_temp.length) {
+                    i--;
+                    continue;
+                }
+            }
+
+            let day = -1;
+            if (j < workout_date_temp.length) {
+                //일에 대한 숫자를 day로 뽑아낸다.
+                day = workout_date_temp[j].split(' ')[2].slice(0, -1);
+            }
+
+            if (date == day) {
+                workout_date.push(workout_date_temp[j]);
+                workout_count.push(workout_count_temp[j]);
+                j++;
+            } else {
+                workout_date.push(year + "년 " + month + "월 " + date + "일");
+                workout_count.push(0);
+            }
+
+            if (date == 1) {
+                if (--month == 0) {
+                    year--;
+                    month = 12;
+                }
+                date = new Date(year, month, 0).getDate();
+            } else {
+                date--;
+            }
+        }
+
+        //가장 최근 날짜의 데이터가 끝에 가도록 뒤집어준다.
+        workout_date.reverse();
+        workout_count.reverse();
+        
+        //본격적으로 그리기 위해 캔버스를 불러온다.
+        let ctx = document.getElementById('myChart').getContext('2d');
+
+        //기존의 것을 파괴시켜주지 않으면 마우스로 그래프 영역 위를 움직일 때 기존 그래프의 정보표시창이 반응하여 자꾸 그림이 바뀌게 되는 현상이 발생한다.
+        //그래서 myChart가 기존에 그려진 적이 있다면 해당 인스턴스를 파괴하도록 하였다.
+        if (myChart != null) {
+            myChart.destroy();
+        }
+        myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: workout_date,
+                datasets: [{
+                    label: '운동 횟수',
+                    data: workout_count,
+                    backgroundColor: '#fcee09',
+                    borderColor: 'rgba(255, 255, 255, 0.5)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                legend: {
+                    labels: {
+                        fontColor: "rgba(255, 255, 255, 1)",
+                        fontSize: 18
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize : 2,
+                            fontColor : "rgba(255, 255, 255, 0.7)",
+                            fontSize : 15,
+                        },
+                        gridLines:{
+                            color: 'rgba(255, 255, 255, 0.3)',
+                            lineWidth:2
+                        }
+                    }],
+                    xAxes: [{
+                        ticks:{
+                            fontColor : 'rgba(255, 255, 255, 0.7)',
+                            fontSize : 12
+                        },
+                        gridLines:{
+                            color: "rgba(255, 255, 255, 0.3)",
+                            lineWidth: 1
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    //input태그의 term이라고 이름붙여진 라디오 태그들 모두에게 본인이 클릭되었을 때에 대한 이벤트 리스너를 달아주었다.
+    document.querySelectorAll("input[name='term']").forEach(function (item) {
+        item.addEventListener("click", function (e) {
+            target_kind = document.querySelector("#workouts").value;
+            switch (e.target.id) {
+                case "week":
+                    howMuch = 7;
+                    break;
+                case "halfMonth":
+                    howMuch = 15;
+                    break;
+                case "month":
+                    howMuch = 30;
+                    break;
+            }
+            resetChart();
+        })
+    });
+    //처음 이 페이지가 로드될 때 아직 이벤트가 발생하지 않았더라도 Chart를 한번 그려준다.
+    resetChart();
+</script>

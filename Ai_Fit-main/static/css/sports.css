@@ -1,0 +1,206 @@
+body{
+    /* background-color: rgba(0, 0, 0.2, 0.9); */
+    /* background: url("/static/image/kettle_bell.jpg")no-repeat center; */
+	background-color: black;
+	background-size: cover;
+    height: 100vh;
+	font-family: Tomorrow, sans-serif;
+    z-index: -10;
+}
+
+#top {
+    background-color: var(--blue-color);
+}
+#welcome {
+    color: var(--blue-color);
+}
+#setting_box{
+    height: 53%;
+    width: 100%;
+    background-color: var(--blue-color);
+}
+
+.top_line {
+	width: 86%;
+	height: 1%;
+	background-color: var(--blue-color);
+	margin-left: 7%;
+	margin-bottom: 4%;
+}
+
+.title{
+	font-size: 4vh;
+	font-family: Tomorrow, sans-serif;
+	font-weight: 500;
+	text-transform: uppercase;
+	color: var(--blue-color);
+	margin-bottom: 1%;
+}
+
+@media (orientation: portrait) {
+    /* 세로 모드일 때 적용할 CSS */
+    .above, .below {
+        height: 50%;
+    }
+}
+@media (orientation: landscape) {
+    /* 가로 모드일 때 적용할 CSS */
+    .above, .below {
+        width: 50%;
+    }
+}
+
+#canvas {
+	width: 60vmin;
+	border: var(--blue-color);
+	border-spacing: 3vh;
+	border-radius: 3vh;
+}
+
+#label-container{
+	color: var(--blue-color);
+}
+
+.frame {
+	margin: 3vh;
+	width: 40vmin;
+	height: 40vmin;
+	border-radius: 2px;
+	box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+	background: #28404e;
+	background: -moz-linear-gradient(top, #28404e 0%, #1c2e38 100%);
+	background: -webkit-linear-gradient(top, #28404e 0%, #1c2e38 100%);
+	background: linear-gradient(to bottom, #28404e 0%, #1c2e38 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#28404e', endColorstr='#1c2e38',GradientType=0);
+	color: #fff;
+	font-family: Tomorrow, sans-serif;
+	-webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale !important;
+}
+ 
+.center {
+	 position: relative;
+	 top: 50%;
+	 left: 50%;
+	 transform: translate(-50%, -50%);
+}
+ 
+.headline {
+	 font-weight: 600;
+	 font-size: 2.5vh;
+	 text-transform: uppercase;
+	 text-align: center;
+	 line-height: 2.5vh;
+}
+ 
+.headline .small {
+	 font-weight: 300;
+	 font-size: 2vh;
+}
+ 
+.circle-big {
+	 position: relative;
+	 vertical-align: center;
+	 text-align: center;
+	 margin: 3vh;
+}
+ 
+.circle-big svg {
+	 width: 114px;
+	 height: 114px;
+}
+ 
+.circle-big .bg {
+	 fill: none;
+	 stroke-width: 10px;
+	 stroke: #1b2a33;
+}
+ 
+.circle-big .progress {
+	 fill: none;
+	 stroke-width: 10px;
+	 stroke: var(--blue-color);
+	 stroke-linecap: round;
+	 stroke-dasharray: 326.56;
+	 stroke-dashoffset: 327;
+	 transform: rotate(-90deg);
+	 transform-origin: 50% 50%;
+	 animation: big 1.5s ease-out;
+}
+ 
+.circle-big .text {
+	 position: absolute;
+	 width: 100%;
+	 top: 37px;
+	 font-size: 24px;
+	 text-align: center;
+	 font-weight: 400;
+	 line-height: 22px;
+}
+ 
+.circle-big .text .small {
+	 font-size: 14px;
+	 color: #648192;
+}
+ 
+.circles-small {
+	 margin: 0 auto;
+	 width: 400px;
+	 height: 80px;
+	 text-align: center;
+}
+ 
+.circle-small {
+	 display: inline-block;
+	 position: relative;
+	 width: 80px;
+	 height: 80px;
+	 margin: 0 20px;
+}
+ 
+.circle-small svg {
+	 width: 80px;
+	 height: 80px;
+}
+ 
+.circle-small .bg {
+	 fill: none;
+	 stroke-width: 6px;
+	 stroke: #1b2a33;
+}
+ 
+.circle-small .progress {
+	 fill: none;
+	 stroke-width: 6px;
+	 stroke: #5ce1ec;
+	 stroke-linecap: round;
+	 stroke-dasharray: 232.36;
+	 transform: rotate(-90deg);
+	 transform-origin: 50% 50%;
+}
+ 
+.circle-small .progress.one {
+	 stroke-dashoffset: 80;
+	 animation: one 1.5s ease-out;
+}
+ 
+.circle-small .progress.two {
+	 stroke-dashoffset: 140;
+	 animation: two 1.5s ease-out;
+}
+ 
+.circle-small .text {
+	 position: absolute;
+	 width: 100%;
+	 top: 26px;
+	 font-size: 3vmin;
+	 text-align: center;
+	 font-weight: 400;
+	 line-height: 16px;
+}
+ 
+.circle-small .text .small {
+	 font-size: 12px;
+	 color: #648192;
+}
