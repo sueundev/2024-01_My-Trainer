@@ -115,7 +115,7 @@ public class homeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // exeUpperFragment로 넘어가는 로직, 하체를 위한 프래그먼트가 있다면 여기서 변경
-                navigateToFragment(new exeLowerFragment());
+                navigateToFragment(new BlankFragment());
             }
         });
 
