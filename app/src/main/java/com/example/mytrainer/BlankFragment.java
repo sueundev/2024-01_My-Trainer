@@ -44,9 +44,9 @@ public class BlankFragment extends Fragment {
         WebView webView2 = view.findViewById(R.id.webview2);
         WebView webView3 = view.findViewById(R.id.webview3);
 
-        setupWebView(webView1, "https://www.youtube.com/watch?v=YOUR_VIDEO_ID_1");
-        setupWebView(webView2, "https://www.youtube.com/watch?v=YOUR_VIDEO_ID_2");
-        setupWebView(webView3, "https://www.youtube.com/watch?v=YOUR_VIDEO_ID_3");
+        setupWebView(webView1, "https://www.youtube.com/watch?v=EPQzkc9LNGQ");
+        setupWebView(webView2, "https://www.youtube.com/watch?v=WYW98dryPLM&t=16s");
+        setupWebView(webView3, "https://www.youtube.com/watch?v=e_JvjxyD0wQ&t=2s");
 
 
         sharedViewModel.getUpperBodyCount().observe(getViewLifecycleOwner(), new Observer<String>() {

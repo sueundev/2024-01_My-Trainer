@@ -142,7 +142,7 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/line_chart"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="250dp"
             android:background="@drawable/rounded_box_with_stroke"/>
 
         <!-- Courses Section -->
@@ -165,26 +165,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:paddingBottom="8dp">
-
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Pilates"
-                    android:textSize="14sp"
-                    android:textColor="@color/black" />
-
+                    android:text="Pilates"/>
                 <ProgressBar
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:indeterminate="false"
                     android:max="100"
-                    android:progressBackgroundTint="#FBE7C6"
-                    android:progressDrawable="@drawable/circle_progressbar"
-                    android:progressTint="#edbf41" />
+                    android:progress="50"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:progressDrawable="@drawable/progressbar_progressbar1"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -199,27 +192,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:paddingBottom="8dp">
-
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Crossfit"
-                    android:textSize="14sp"
-                    android:textColor="@color/black" />
-
+                    android:text="Crossfit"/>
                 <ProgressBar
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:indeterminate="false"
                     android:max="100"
-                    android:progressBackgroundTint="#FBE7C6"
-                    android:progressDrawable="@drawable/circle_progressbar"
-                    android:progressTint="#edbf41" />
-
+                    android:progress="70"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:progressDrawable="@drawable/progressbar_progressbar1"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -233,25 +218,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Running"
-                    android:textSize="14sp"
-                    android:textColor="@color/black" />
+                    android:text="Running"/>
 
                 <ProgressBar
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:indeterminate="false"
                     android:max="100"
-                    android:progressBackgroundTint="#FBE7C6"
-                    android:progressDrawable="@drawable/circle_progressbar"
-                    android:progressTint="#edbf41" />
+                    android:progress="30"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:progressDrawable="@drawable/progressbar_progressbar1"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
