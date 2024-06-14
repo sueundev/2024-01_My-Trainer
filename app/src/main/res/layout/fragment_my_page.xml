@@ -1,45 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/userIdTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="User ID"
-        android:textSize="18sp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center"
-        android:padding="8dp"/>
+    android:background="@color/white">
 
     <LinearLayout
-        android:id="@+id/profileLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/rounded_box_with_stroke"
-        android:padding="16dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="showEditDialog">
+        android:padding="16dp">
 
+        <!-- Profile Header -->
+        <TextView
+            android:id="@+id/profileTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="10dp"
+            android:layout_gravity="center"
+            android:textColor="@color/black" />
+
+        <!-- User Info -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp"
-            android:gravity="center">
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp">
 
             <ImageView
-                android:id="@+id/iconImageView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:id="@+id/profileImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@drawable/baseline_account_box_24"
                 android:layout_marginEnd="16dp"/>
-
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -47,26 +42,225 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/nameAgeTextView"
+                    android:id="@+id/userNameTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name / Age"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:text="Kim"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/baseline_account_box_24"/>
+
+                    <TextView
+                        android:id="@+id/userLocationTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Seoul, Korea"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- User Stats -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
+                android:layout_marginEnd="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_box_with_stroke"
+                android:gravity="center">
 
                 <TextView
-                    android:id="@+id/genderWeightTextView"
+                    android:id="@+id/heightLabelTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gender / Weight"
-                    android:textSize="14sp"/>
+                    android:text="171 cm"
+                    android:textSize="16sp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Height"
+                    android:textSize="14sp" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_marginLeft="10dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_arrow_back_ios_24"
-                android:scaleX="-1" />
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_box_with_stroke"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/weightLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="55 Kg"
+                    android:textSize="16sp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weight"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Activity Graph -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activity"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="8dp"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/line_chart"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/rounded_box_with_stroke"/>
+
+        <!-- Courses Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Course"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="8dp"
+            android:paddingTop="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Pilates Course -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Pilates"
+                    android:textSize="14sp"
+                    android:textColor="@color/black" />
+
+                <ProgressBar
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progressBackgroundTint="#FBE7C6"
+                    android:progressDrawable="@drawable/circle_progressbar"
+                    android:progressTint="#edbf41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50%"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <!-- Crossfit Course -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Crossfit"
+                    android:textSize="14sp"
+                    android:textColor="@color/black" />
+
+                <ProgressBar
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progressBackgroundTint="#FBE7C6"
+                    android:progressDrawable="@drawable/circle_progressbar"
+                    android:progressTint="#edbf41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20%"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <!-- Running Course -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Running"
+                    android:textSize="14sp"
+                    android:textColor="@color/black" />
+
+                <ProgressBar
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progressBackgroundTint="#FBE7C6"
+                    android:progressDrawable="@drawable/circle_progressbar"
+                    android:progressTint="#edbf41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30%"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

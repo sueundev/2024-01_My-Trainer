@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             if (menuItem.getItemId() == R.id.menu_home) {
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_ly, new homeFragment())
+                        .replace(R.id.home_ly, new BlankFragment())
                         .commit();
                 return true;
             } else if (menuItem.getItemId() == R.id.menu_myPage) {
