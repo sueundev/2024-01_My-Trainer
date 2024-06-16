@@ -85,6 +85,13 @@ public class BlankFragment extends Fragment {
             }
         });
 
+        // 전달된 이메일의 앞부분을 받아 텍스트뷰에 설정
+        TextView welcomeMessage = view.findViewById(R.id.welcome_message_name);
+        if (getArguments() != null) {
+            String emailPrefix = getArguments().getString("emailPrefix");
+            welcomeMessage.setText(emailPrefix);
+        }
+
         return view;
     }
 

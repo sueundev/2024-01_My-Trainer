@@ -7,11 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class Login extends AppCompatActivity {
     private EditText emailEditText;
@@ -40,8 +36,12 @@ public class Login extends AppCompatActivity {
                 editor.putString("password", password);
                 editor.apply();
 
-                // 다른 액티비티로 이동
+                // 이메일의 앞부분 추출
+                String emailPrefix = email.split("@")[0];
+
+                // Intent로 이메일의 앞부분을 전달
                 Intent intent = new Intent(Login.this, MainActivity.class);
+                intent.putExtra("emailPrefix", emailPrefix);
                 startActivity(intent);
             }
         });

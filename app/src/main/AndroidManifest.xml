@@ -15,31 +15,40 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyTrainer"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
             android:name=".Login"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".myPageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Weight_record_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Kcal_record_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".exe_record_Activity"
-            android:exported="false" />
-        <activity android:name=".exercise_upper" />
-        <activity android:name=".exercise_lower" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".exercise_upper"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".exercise_lower"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".TitleActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
