@@ -45,12 +45,12 @@ public class myPageFragment extends Fragment {
 
         LineDataSet dataSet = new LineDataSet(entries, "weight");
         dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);  // Cubic lines 설정
-        dataSet.setColor(android.graphics.Color.BLUE);
+        dataSet.setColor(Color.parseColor("#FFFB3F4A"));
         dataSet.setValueTextColor(android.graphics.Color.BLACK);
 
         // 선 아래쪽에 색을 채우기 위한 설정
         dataSet.setDrawFilled(true);
-        dataSet.setFillColor(Color.BLUE);  // 채울 색 설정
+        dataSet.setFillColor(Color.parseColor("#FFCDD0"));  // 채울 색 설정
         dataSet.setFillAlpha(50);  // 투명도 설정 (0-255)
 
         LineData lineData = new LineData(dataSet);

@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="25dp"
         android:padding="16dp">
 
         <!-- Profile Header -->
@@ -34,7 +35,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/baseline_account_box_24"
-                android:layout_marginEnd="16dp"/>
+                android:layout_marginEnd="3dp"/>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -46,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kim"
-                    android:textSize="18sp"
+                    android:textSize="25sp"
                     android:textStyle="bold"
                     android:textColor="@color/black" />
 
@@ -57,16 +58,17 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/baseline_account_box_24"/>
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/home_pin_48dp_fill0_wght400_grad0_opsz48"/>
 
                     <TextView
                         android:id="@+id/userLocationTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Seoul, Korea"
-                        android:textSize="14sp" />
+                        android:textColor="#999999"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -81,21 +83,23 @@
             android:paddingBottom="16dp">
 
             <LinearLayout
-                android:layout_marginEnd="10dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
+                android:padding="5dp"
                 android:background="@drawable/rounded_box_with_stroke"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/heightLabelTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="171 cm"
-                    android:textSize="16sp"
-                    android:textColor="@color/black" />
+                    android:text="177 cm"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,6 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
+                android:padding="5dp"
                 android:background="@drawable/rounded_box_with_stroke"
                 android:gravity="center">
 
@@ -117,9 +122,10 @@
                     android:id="@+id/weightLabelTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="55 Kg"
-                    android:textSize="16sp"
-                    android:textColor="@color/black" />
+                    android:text="77 Kg"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -137,12 +143,13 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"
+            android:layout_marginTop="5dp"
             android:paddingBottom="8dp"/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/line_chart"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="220dp"
             android:background="@drawable/rounded_box_with_stroke"/>
 
         <!-- Courses Section -->
@@ -153,8 +160,8 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:paddingBottom="8dp"
-            android:paddingTop="16dp"/>
+            android:layout_marginTop="13dp"
+            android:paddingBottom="8dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -170,13 +177,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pilates"/>
+                    android:layout_marginBottom="2dp"
+                    android:text="squat"/>
                 <ProgressBar
                     android:max="100"
                     android:progress="50"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:progressDrawable="@drawable/progressbar_progressbar1"
                     android:layout_width="match_parent"
+                    android:progressTint="@color/main_Color"
+                    android:progressBackgroundTint="#FFCDD0"
                     android:layout_height="12dp"/>
 
                 <TextView
@@ -197,13 +207,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Crossfit"/>
+                    android:layout_marginBottom="2dp"
+                    android:text="dumbell curl"/>
                 <ProgressBar
                     android:max="100"
                     android:progress="70"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:progressDrawable="@drawable/progressbar_progressbar1"
                     android:layout_width="match_parent"
+                    android:progressBackgroundTint="#FFCDD0"
+                    android:progressTint="@color/main_Color"
                     android:layout_height="12dp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -223,6 +236,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
                     android:text="Running"/>
 
                 <ProgressBar
@@ -231,6 +245,8 @@
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:progressDrawable="@drawable/progressbar_progressbar1"
                     android:layout_width="match_parent"
+                    android:progressBackgroundTint="#FFCDD0"
+                    android:progressTint="@color/main_Color"
                     android:layout_height="12dp"/>
 
                 <TextView
