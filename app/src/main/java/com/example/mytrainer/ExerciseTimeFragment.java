@@ -36,7 +36,6 @@ public class ExerciseTimeFragment extends Fragment {
         textViewSelectedDate = view.findViewById(R.id.text_view);
         Button btnRecordExercise = view.findViewById(R.id.btn_record_exercise);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-        ImageView backArrow = view.findViewById(R.id.backArrow);
 
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
@@ -45,12 +44,7 @@ public class ExerciseTimeFragment extends Fragment {
             selectedDate = args.getString("selected_date");
             textViewSelectedDate.setText(selectedDate);
         }
-        backArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToFragment(new recordFragment());
-            }
-        });
+
         exerciseLogDao = new ExerciseLogDao(getContext());
         exerciseLogs = exerciseLogDao.getLogsByDate(selectedDate);
         exerciseLogAdapter = new ExerciseLogAdapter(exerciseLogs);

@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginBottom="10dp"
+    android:padding="15dp"
     android:background="@drawable/rounded_box_with_stroke">
 
     <TextView
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="PM 05:23"
         android:textSize="18sp"
+        android:textColor="@color/black"
         android:textStyle="bold"/>
 
     <TextView

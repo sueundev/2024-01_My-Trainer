@@ -11,8 +11,6 @@
         android:orientation="vertical"
         android:gravity="top">
 
-        <!-- 날짜를 표시할 텍스트뷰 -->
-
         <!-- 캘린더 뷰 -->
         <CalendarView
             android:id="@+id/calendar_view"
@@ -22,7 +20,7 @@
             android:padding="0dp"
             android:layout_margin="5dp"/>
 
-        <!-- 기록 버튼 -->
+        <!-- 날짜를 표시할 텍스트뷰 -->
         <TextView
             android:id="@+id/text_view_date"
             android:layout_width="match_parent"
@@ -33,6 +31,7 @@
             android:textColor="@color/black"
             android:textSize="20dp" />
 
+        <!-- 기록 버튼 -->
         <Button
             android:id="@+id/button_save"
             android:layout_width="180dp"
