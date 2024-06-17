@@ -9,18 +9,21 @@
         android:id="@+id/et_upper_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="상체 운동 횟수 (숫자)"/>
+        android:hint="상체 운동"/>
 
     <EditText
         android:id="@+id/et_lower_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="하체 운동 횟수 (숫자)"/>
+        android:hint="하체 운동"/>
 
     <Button
         android:id="@+id/btn_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="113dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_box_with_stroke"
         android:backgroundTint="@color/main_Color"
-        android:text="저장"/>
+        android:text="저장" />
 </LinearLayout>
