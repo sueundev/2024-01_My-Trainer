@@ -1,13 +1,13 @@
 package com.example.mytrainer;
 
 import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +16,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -41,6 +43,8 @@ public class WeightFragment extends Fragment {
     private Button btnRecordWeight;
     private Map<String, Float[]> weightData = new HashMap<>();
     private SharedViewModel sharedViewModel;
+    private List<String> sortedDates; // 데이터를 정렬된 순서로 보관하는 리스트
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,7 +56,6 @@ public class WeightFragment extends Fragment {
         textViewFat = view.findViewById(R.id.text_view_fat);
         lineChart = view.findViewById(R.id.line_chart);
         btnRecordWeight = view.findViewById(R.id.btn_record_weight);
-        ImageView backArrow = view.findViewById(R.id.backArrow);
 
         Bundle args = getArguments();
         if (args != null) {
@@ -63,9 +66,13 @@ public class WeightFragment extends Fragment {
         btnRecordWeight.setOnClickListener(v -> showRecordDialog());
 
         // 초기 데이터
-        weightData.put("2024-05-28", new Float[]{75f, 30f, 10f});
-        weightData.put("2024-05-27", new Float[]{73f, 29f, 11f});
-        weightData.put("2024-05-26", new Float[]{70f, 28f, 12f});
+        weightData.put("2024-05-28", new Float[]{85f, 30f, 10f});
+        weightData.put("2024-05-27", new Float[]{84f, 29f, 11f});
+        weightData.put("2024-05-26", new Float[]{82f, 28f, 12f});
+        weightData.put("2024-05-25", new Float[]{80f, 27f, 13f});
+        weightData.put("2024-05-24", new Float[]{79f, 26f, 14f});
+        weightData.put("2024-05-23", new Float[]{77f, 25f, 15f});
+        weightData.put("2024-05-22", new Float[]{77f, 24f, 16f});
 
         updateChart();
 
@@ -73,12 +80,14 @@ public class WeightFragment extends Fragment {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 int index = (int) e.getX();
-                String date = (new ArrayList<>(weightData.keySet())).get(index);
-                Float[] values = weightData.get(date);
-                if (values != null) {
-                    textViewWeight.setText(values[0] + "kg");
-                    textViewMuscle.setText(values[1] + "kg");
-                    textViewFat.setText(values[2] + "kg");
+                if (index < sortedDates.size()) {
+                    String date = sortedDates.get(index);
+                    Float[] values = weightData.get(date);
+                    if (values != null) {
+                        textViewWeight.setText(values[0] + "kg");
+                        textViewMuscle.setText(values[1] + "kg");
+                        textViewFat.setText(values[2] + "kg");
+                    }
                 }
             }
 
@@ -89,6 +98,9 @@ public class WeightFragment extends Fragment {
                 textViewFat.setText("");
             }
         });
+
+        // 마지막 값 설정
+        setLastValue();
 
         return view;
     }
@@ -117,6 +129,7 @@ public class WeightFragment extends Fragment {
             sharedViewModel.setMuscle(muscle);
             sharedViewModel.setFat(fat);
             updateChart();
+            setLastValue(); // 새로운 값을 입력한 후 마지막 값을 설정
             dialog.dismiss();
         });
 
@@ -124,6 +137,7 @@ public class WeightFragment extends Fragment {
 
         dialog.show();
     }
+
     private void navigateToFragment(Fragment fragment) {
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -131,6 +145,7 @@ public class WeightFragment extends Fragment {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
+
     private void updateChart() {
         List<Map.Entry<String, Float[]>> sortedData = new ArrayList<>(weightData.entrySet());
         Collections.sort(sortedData, new Comparator<Map.Entry<String, Float[]>>() {
@@ -141,29 +156,56 @@ public class WeightFragment extends Fragment {
         });
 
         List<Entry> entries = new ArrayList<>();
-        final List<String> dates = new ArrayList<>();
+        sortedDates = new ArrayList<>();
         int index = 0;
         for (Map.Entry<String, Float[]> entry : sortedData) {
             entries.add(new Entry(index++, entry.getValue()[0]));
-            dates.add(entry.getKey());
+            sortedDates.add(entry.getKey());
         }
 
         LineDataSet dataSet = new LineDataSet(entries, "Weight");
+        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);  // Cubic lines 설정
+        dataSet.setColor(Color.parseColor("#FFFB3F4A"));
+        dataSet.setValueTextColor(Color.BLACK);
+
+        // 선 아래쪽에 색을 채우기 위한 설정
+        dataSet.setDrawFilled(true);
+        dataSet.setFillColor(Color.parseColor("#FFCDD0"));  // 채울 색 설정
+        dataSet.setFillAlpha(50);  // 투명도 설정 (0-255)
+
         LineData lineData = new LineData(dataSet);
         lineChart.setData(lineData);
 
+        // X축과 Y축의 숫자 레이블 제거
         XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setGranularity(1f);
-        xAxis.setGranularityEnabled(true);
-        xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                int index = (int) value;
-                return dates.size() > index ? dates.get(index) : "";
-            }
-        });
+        xAxis.setDrawLabels(false);
+        xAxis.setDrawGridLines(false);  // X축의 그리드 라인 제거
 
-        lineChart.invalidate();
+        YAxis leftAxis = lineChart.getAxisLeft();
+        leftAxis.setDrawLabels(false);
+        leftAxis.setDrawGridLines(false);  // 왼쪽 Y축의 그리드 라인 제거
+
+        YAxis rightAxis = lineChart.getAxisRight();
+        rightAxis.setDrawLabels(false);
+        rightAxis.setDrawGridLines(false);  // 오른쪽 Y축의 그리드 라인 제거
+
+        // 그래프 설명 제거
+        Description description = new Description();
+        description.setText("");
+        lineChart.setDescription(description);
+
+        lineChart.invalidate(); // 차트를 갱신합니다.
+    }
+
+    private void setLastValue() {
+        if (sortedDates != null && !sortedDates.isEmpty()) {
+            String lastDate = sortedDates.get(sortedDates.size() - 1);
+            Float[] lastValues = weightData.get(lastDate);
+            if (lastValues != null) {
+                textViewWeight.setText(lastValues[0] + "kg");
+                textViewMuscle.setText(lastValues[1] + "kg");
+                textViewFat.setText(lastValues[2] + "kg");
+            }
+        }
     }
 }

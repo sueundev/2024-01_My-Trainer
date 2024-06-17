@@ -122,7 +122,7 @@
                     android:id="@+id/weightLabelTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="77 Kg"
+                    android:text="85 Kg"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
